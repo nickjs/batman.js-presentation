@@ -1,0 +1,605 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>fighting crime and kicking apps</title>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+    setupPreso(false, './');
+  });
+  </script>
+</head>
+
+<body>
+
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">&larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">z</td><td>toggle help (this)</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content execute" ref="intro/01_hello/1">
+<h1>hello world</h1></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/01_hello/2">
+<h1>i'm nick</h1>
+
+<h2>@nciagra</h2>
+
+<!-- i'm nick from shopify and i'm here to talk to you about yet another javascript microframework -->
+</div>
+</div><div class="slide" data-transition="none">
+  <div class="content bullets" ref="intro/01_hello/3">
+<!-- there are people much smarter than me working on these things, and i'll probably manage to piss off a good number of them today, but my bullshit title at shopify means I get to play with javascript frameworks all day -->
+
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/shopify.png" width="100" height="100" style="float:right"/>
+
+<ul>
+<li>head of research at shopify</li>
+<li>cappuccino core contrib</li>
+<li>recovering reddit addict</li>
+</ul>
+
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/unicorn_narwhal.jpeg" width="399" height="299" style="float:right"/></p>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/02_problem/1">
+<!-- so let's talk about frameworks -->
+
+
+<h1>as a community</h1>
+
+<h2>we want to build great apps</h2>
+
+<!-- that can mean web apps, node apps, embedded apps, or any other crazy things that will probably be implemented by someone in this very room -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/02_problem/2">
+<!-- talking about web apps, it's important to specify where these microframeworks come in. I like this old cappuccino slide -->
+
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/bar.png" width="1024" height="768"/>
+
+<!-- the apps that we're talking about now, that things like backbone and spine are aimed at, are towards the right end of the spectrum, but not all the way. If you're building a desktop style app, you should still use something like Cappuccino or Sproutcore. but obviously not every app has the same type of fully state-full interaction model; that's where microframeworks come in. -->
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/02_problem/3">
+<!-- the problem with building these apps in any scenario -->
+
+
+<h1>it's really hard</h1>
+
+<!-- there are so many moving parts involved, complexity explodes for anything but the simplest apps -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/02_problem/4">
+<h1>at shopify</h1>
+
+<h2>we have a big ass app to implement</h2>
+
+<!-- seriously this thing is huge. we're talking at least 100 end points and routes and api calls. the complexity becomes unimaginable and unmnagable. -->
+
+
+<!-- but we wanted to make it work. so my job is to sit there like a monkey at a typewriter figure out how to make it happen. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content small" ref="intro/02_problem/5">
+<!-- the thing you need to understand for this story is -->
+
+
+<h2>i'm the lone javascript developer in a sea of rubyists</h2>
+
+<center><img src="file:///Users/Nick/Documents/batman_pres/intro/alone.jpeg" width="280" height="260"/></center>
+
+
+<h3>aside: i'm with chris in not pigeonholing developers</h3>
+
+<!-- so I started implementing the app in backbone. backbone's pretty fuckin amazing, eh? -->
+
+
+<!-- I was able to get a few basic tasks working fairly quickly. then I showed it to my cohorts. they understood the code fine, but something didn't seem to compute. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="intro/02_problem/6">
+<h1>designers</h1>
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/designer.jpeg" width="400" height="300"/>
+
+<!-- more importantly, we have a team of extremely talented designers that would need to get on board with this. mention programming to them and they'll punch you in the face; I mean, in the larger design community, javascript is still synonymous with jquery and we, as a community, need to keep doing a fantastic job of proving that's not true. -->
+
+
+<!-- anyway, designers aren't going to write a bunch of js in the middle of a bunch of the developer's js just to get some things to show up on screen. -->
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="intro/02_problem/7">
+<h1>i played with everything</h1>
+
+<ul>
+<li>backbone</li>
+<li>knockout</li>
+<li>angular</li>
+<li>javascriptmvc</li>
+<li>ender</li>
+<li>spine, though that was more recent</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/02_problem/8">
+<h1>you are all amazing</h1>
+
+<h2>i love you all</h2>
+
+<h3>please keep innovating</h3>
+
+<!-- There were a lot of various reasons, but we came to an impasse: -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="intro/02_problem/9">
+<h1>A CREVASSE</h1>
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/crevasse.jpeg" width="640" height="462"/>
+
+<!-- invest in the hivemind but have something that didn't work well specifically for Shopify, or give up on javascript apps -->
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/03_goals/1">
+<h1>goals</h1>
+
+<!-- but we realized there were only a handful of goals we really wanted to solve -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/2">
+<h1>MAKE.EVERYTHING.FAST.</h1>
+
+<h3>faster than ryan completely changes the node apis</h3>
+
+<ul>
+<li>immediate startup</li>
+<li>light speed runtime</li>
+<li>develop with gusto</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/3">
+<h1>maximize developer happiness</h1>
+
+<!-- being constantly encircled by ruby developers, for better or worse this meant coffee script -->
+
+
+<ul>
+<li>coffee-script</li>
+</ul>
+
+
+<!-- don't get me wrong, I love me some native JS as much as the next guy, but CS is absolutely beautiful and allows you to do some things that are really hard natively. more importantly, the way it allows you to implement certain things just look more like what a developer expects when she looks at it, as opposed to some of the crazy class hoops people jump through in js. that's important: the path of least resistance -->
+
+
+<ul>
+<li>rails-looking</li>
+</ul>
+
+
+<!-- let me be clear here; I didn't want to reimplement rails in javascript, and I'm also not saying rails is the end-all of web frameworks -->
+
+
+<!-- but by simply being aesthetically similar to rails, you get something very semantically pleasing and you also adhere to the principle of -->
+
+
+<ul>
+<li>the path of least resistance</li>
+</ul>
+
+
+<!-- any new developer sitting down to look at your app should simply be able to grok it immediately. there shouldn't be semantic confusion or wasted code -->
+
+
+<!-- this is a really strong principle, and, spoiler alert, it's going to pop up in a lot. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/4">
+<h1>maximize designer happiness</h1>
+
+<!-- things look different in the eyes of a designer. i imagine that a designer sees everything like charlie the unicorn. but if our designers and developers are going to work successfully together, a few things need to happen -->
+
+
+<ul>
+<li>designer decoupling</li>
+</ul>
+
+
+<!-- to be honest, most of the time developers and designers just don't want to talk to each other. designers should be able to write their html, developers should be able to write their application logic, and then it should just kind of magic together. -->
+
+
+<ul>
+<li>easy places to put the jquery</li>
+<li>rapid iteration</li>
+<li>the path of least resistance</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="intro/03_goals/5">
+<h1>convention over configuration</h1>
+
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/config.jpeg" width="1024" height="768"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/6">
+<h1>convention over configuration</h1>
+
+<ul>
+<li>you write less code</li>
+<li>you know where to put your stuff</li>
+<li>the path of least resistance</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/7">
+<h1>powerful bindings</h1>
+
+<ul>
+<li>know when any key on any object changes</li>
+</ul>
+
+
+<!-- part of the problem with building large apps is keeping them in sync. even if you have some type of value observing, it's usually more of a tacked on thing. -->
+
+
+<ul>
+<li>build the whole framework around it</li>
+</ul>
+
+
+<!-- that means it needs to be really, really -->
+
+
+<ul>
+<li>fast</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="intro/03_goals/8">
+<h1>no templates</h1>
+
+<!-- they were great for stateless servers, but we're not in kansas anymore. -->
+
+
+<ul>
+<li>they make designers program</li>
+<li>they ruin the DOM</li>
+<li>they're slow</li>
+<li>they mix logic with design</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/03_goals/9">
+<h1>be a framework, not a library</h1>
+
+<!-- with the existing libraries, they give you some code you can call into to make cool things happen, but you're still writing a lot of glue code to keep everything together. with a well-written, tiny framework, all the glue code is handled for you, so you can just work on the cool stuff -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/04_batman/1">
+<h1>the dilemma</h1>
+
+<!-- so we're back at the impasse. give up on these foolish pipe dreams or... you know, do something about it -->
+
+
+
+
+<!-- people told me to give up. I said SUNDLESTICKS TO THEM! you know what? -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/04_batman/2">
+<h1>fuck it.</h1></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/04_batman/3">
+<h1>go big or go home</h1>
+
+<!-- realizing the goals were probably completely unobtainable, I started implementing Shopify as the app that we wanted to see. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="intro/04_batman/4">
+<h1>achievement unlocked:</h1>
+
+<h1>achieve all goals</h1>
+
+<!-- the result is a framework that's partly extraction from real work, partly my own over-engineering fancy. and that framework is ... -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="intro/04_batman/5">
+<p><img src="file:///Users/Nick/Documents/batman_pres/intro/logo.png" width="919" height="238"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets smaller" ref="intro/04_batman/6">
+<h1>batman.js</h1>
+
+<ul>
+<li>fast everything framework</li>
+<li>developer and designer happiness</li>
+<li>convention over configuration</li>
+<li>powerful bindings and better than templates</li>
+<li>the path of least resisitance</li>
+</ul>
+
+
+<!-- this is Batman, which we're going to be releasing under MIT once we get some issues worked out. let me show you what it looks like -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/1">
+<h1>alfred: batman's todo manager</h1>
+
+<h3>get it?</h3>
+
+<!-- the first example everyone always has is the todo manager. honestly, batman makes this so trivial, it's not even really fair to call this a demo, but it's a great way to explore some of the key features of Batman. -->
+
+
+
+
+<!-- SWITCH TO index.html, display the empty html template -->
+
+
+<!-- alright, I hate live coding as much as everyone else but, (stretch muscles) let's do this -->
+
+
+<!-- implement Alfred.Todo model, get all, create instance -->
+
+
+<!-- implement each, data, and class bindings -->
+
+
+<!-- implement events, mixins -->
+
+
+<!-- implement formfor -->
+
+
+<!-- for the coup d'etat: @persistence (if it works) -->
+
+
+
+
+<!-- so that's a look at a couple features of batman. something I want to touch on more though is that batman isn't just a library that you call into, it's a framework that will structure your app in an appropriate and consistent way and take care of all the menial work for you, so you can concentrate on business logic. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/2">
+<h1>concentrate on the cool stuff</h1>
+
+<!-- Unlike other frameworks like sproutcore and cappuccino though, it's more like backbone in that it's <10kb because just doesn't do very much. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/3">
+<h1>&lt;10kb compressed</h1>
+
+<h1>~1000 lines of code</h1>
+
+<h1>no external dependencies</h1>
+
+<h1>compatible with everything</h1></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/4">
+<h1>use with an existing backend</h1>
+
+<!-- if you have an existing rest api, client side Batman will work seamlessly with it (and in a completely decoupled way). But if you want to write not just end-to-end javascript, but end-to-end Batman, then this is where things get really cool. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/5">
+<h1>full stack framework</h1>
+
+<!-- Batman is actually a full stack framework. In addition to the client side framework, batman has a full set of command line tools like generators for creating and maintaining your app, and more importantly, a really awesome batman server. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/6">
+<h1>batman node server</h1></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/7">
+<h1>uses your same app code for client and server</h1>
+
+<h3>literally</h3>
+
+<!-- seriously, it uses the exact same Batman application code. This isn't false promises like so many others. SAME model data; same validations, same code.-->
+
+
+<!-- plus you can include extra files to be run inside the server, useful for doing extra security critical things or validations. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/01_alfred/8">
+<pre class="sh_javascript"><code>class MyModel extends Batman.Model
+    @persist Batman</code></pre>
+
+<!-- finally the batman server uses now.js (aka web sockets) to persist all of your record data between clients instantaneously. as soon as you call .save, everyone else is aware of the update (if you want it that way of course) -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/02_twitter/1">
+<h2>a full stack framework for building batman.js apps end-to-end</h2>
+
+<h3>if you want it to be</h3>
+
+<h3>otherwise it's just an awesome, tiny, fast client side framework</h3>
+
+<!-- ok, so demos are cute, what's it like to build a real app? -->
+
+
+<!-- Let's build a really stupid twitter client because I couldn't come up with a better idea. Plus Twitter told us not to build any more Twitter clients, so... -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content small" ref="demos/02_twitter/2">
+<h1>TWITTER.CLIENT.EVERYTHING.</h1>
+
+<!-- This is going pull a public timeline from a search request, then let you comment on it. I seriously can't think of anything more worthless. -->
+
+
+<!-- I'm not going to live code this one because there are a lot more moving parts, but I'm going to show you what happens every step of the way. This should really give you a feel for building a batman app. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="demos/02_twitter/3">
+<pre><code><code class="command">$batman gen app twitter</code><code class="result">
+creating twitter/controllers/app.coffee
+creating twitter/models/
+creating twitter/index.html
+creating twitter/README
+creating twitter/views/app/index.html
+creating twitter/views/
+
+</code><code class="command">$cd twitter</code><code class="result">
+
+</code><code class="command">$batman s</code><code class="result">
+socket.io ready - accepting connections
+Batman is waiting at http://127.0.0.1:8124
+</code></code></pre>
+
+<!-- cd twitter; batman s to spawn up the server, localhost:8124, change binding to JSConf -->
+
+
+<!-- stop server, make models -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="demos/02_twitter/4">
+<pre><code><code class="command">$batman gen model tweet</code><code class="result">
+creating twitter/models/tweet.coffee
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="demos/02_twitter/5">
+<h1>Twitter.Tweet</h1>
+
+<pre class="sh_javascript"><code>class Twitter.Tweet extends Batman.Model
+  @hasMany 'comments'
+
+  fetch: (query) -&gt;
+    new Batman.JSONPRequest(url: 'http://search.twitter.com/search.json', data: {q: query}).success (json) =&gt;
+      for result in json.results
+        new Tweet(result).save()</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="demos/02_twitter/6">
+<pre><code><code class="command">$batman gen model comment</code><code class="result">
+creating twitter/models/comment.coffee
+</code></code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="demos/02_twitter/7">
+<h1>Twitter.Comment</h1>
+
+<pre class="sh_javascript"><code>class Twitter.Comment extends Batman.Model
+  @persist Batman
+
+  @belongsTo 'post'
+
+  @validatesLengthOf 'body', minimum: 3
+
+  name: ''
+  body: ''</code></pre>
+
+<!-- show index.html, app controller, routing, and auto view rendering, yields -->
+
+
+<!-- setup query route -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content small" ref="demos/02_twitter/8">
+<h1>Twitter.AppController</h1>
+
+<pre class="sh_javascript"><code>class Twitter.AppController extends Batman.Controller
+  index: -&gt;
+
+  search: -&gt;
+    Tweet.fetch(App.get('query'))
+    Batman.redirect("/#{query}")</code></pre>
+
+<!-- that gives us our search; finally we just need the comment views, which will look like this: -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content smaller" ref="demos/02_twitter/9">
+<h1>Twitter.CommentsController</h1>
+
+<pre class="sh_javascript"><code>class Twitter.CommentsController extends Batman.Controller
+  index: (params) -&gt;
+    @tweet = Tweet.find(params.id)
+
+  new: (params) -&gt;
+    @tweet = Tweet.find(params.id)
+
+    @comment = new Comment
+    @comment.set('tweet', @tweet)</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content small" ref="demos/02_twitter/10">
+<h1>comments/index.html</h1>
+
+<pre class="sh_html"><code>&lt;h1 data-bind="tweet.text"&gt;Comments&lt;/h1&gt;
+&lt;div data-foreach-comment="tweet.comments"&gt;
+  &lt;strong data-bind="comment.name"&gt;&lt;/strong&gt;:
+    &lt;span data-bind="comment.body"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+<!-- run it with batman s! -->
+
+
+<!-- search jsconf, reload if needed, post a comment, post another, don't go back to the list -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets smaller" ref="demos/02_twitter/11">
+<h1>twitter_comments</h1>
+
+<ul>
+<li>developers can immediately see what's going on</li>
+<li>designers can independently work in what's comfortable to them</li>
+<li>&lt;100 lines including searching twitter, modeling relationships, and rendering routes and views</li>
+</ul>
+
+
+<!-- so you can see how easy it is to use batman as a full stack framework to build javascript apps powerfully and quickly. -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets smaller" ref="finale/01/1">
+<h1>batman.js</h1>
+
+<ul>
+<li>fast everything</li>
+<li>developer and designer happiness</li>
+<li>convention over configuration</li>
+<li>powerful bindings and better than templates</li>
+<li>the path of least resisitance</li>
+<li>(optional) full stack framework</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="finale/01/2">
+<h1>&lt;10kb</h1>
+
+<h1>MIT soon</h1></div>
+</div><div class="slide" data-transition="none"><div class="content" ref="finale/01/3">
+<h1>batmanjs.org</h1>
+
+<!-- deploy? -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="finale/01/4">
+<h1>one more thing...</h1>
+
+<!-- we have one more demo, with a lot of moving pieces. in fact it used to involve an arduino, here's what happened to that: -->
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="finale/01/5">
+<p><img src="file:///Users/Nick/Documents/batman_pres/finale/arduino.png" width="900" height="675"/>
+
+<!-- do demo, chris comes out -->
+
+
+<!-- and that's why we called it batman.js -->
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="finale/01/6">
+<h1>batmanjs.org</h1>
+
+<h3>thank you</h3></div>
+</div>
+</div>
+
+</body>
+</html>
