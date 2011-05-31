@@ -205,9 +205,11 @@ function showSlide(back_step) {
 	}
 	location.hash = slidenum + 1;
 	$('body').addSwipeEvents().
-		bind('swipeleft',	swipeLeft).
-		bind('swiperight', swipeRight)
-	removeResults()
+		bind('tap', swipeLeft).         // next
+		bind('swipeleft', swipeLeft).   // next
+		bind('swiperight', swipeRight); // prev
+
+	removeResults();
 
 	$(currentSlide).find(".content").trigger("showoff:show");
 
@@ -334,7 +336,14 @@ function keyDown(event)
 			gotoSlidenum = 0;
 		} else {
 			debug('executeCode');
-			executeCode.call($('.sh_javaScript code:visible'));
+            var $jsCode = $('.execute .sh_javascript code:visible')
+            if ($jsCode.length > 0) {
+                executeCode.call($jsCode);
+            } 
+            var $rubyCode = $('.execute .sh_ruby code:visible')
+            if ($rubyCode.length > 0) {
+                executeRuby.call($rubyCode);
+            }
 		}
 
 	}
@@ -411,12 +420,22 @@ function keyUp(event) {
 }
 
 
+var lastSwipeLeft = (+new Date());
+var lastSwipeRight = (+new Date());
 function swipeLeft() {
-	nextStep()
+  var time = (+new Date());
+  if((time - lastSwipeLeft) > 100) {
+    lastSwipeLeft = time;
+    nextStep();
+  }
 }
 
 function swipeRight() {
-	prevStep()
+  var time = (+new Date());
+  if((time - lastSwipeRight) > 100) {
+    lastSwipeRight = time;
+    prevStep();
+  }
 }
 
 function ListMenu(s)
@@ -483,7 +502,17 @@ function executeCode () {
 	setTimeout(function() { codeDiv.removeClass("executing");}, 250 );
 	if (result != null) print(result);
 }
-$('.sh_javaScript code').live("click", executeCode);
+$('.execute .sh_javascript code').live("click", executeCode);
+
+function executeRuby () {
+	var codeDiv = $(this);
+	codeDiv.addClass("executing");
+    $.get('/eval_ruby', {code: codeDiv.text()}, function(result) {
+        if (result != null) print(result);
+        codeDiv.removeClass("executing");
+    });
+}
+$('.execute .sh_ruby code').live("click", executeRuby);
 
 
 /********************
